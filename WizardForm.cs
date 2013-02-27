@@ -432,7 +432,7 @@ namespace GLT.SqlCopy
                         sb.Append(col.DataType.SqlDataType.ToString());
 
                         SqlDataType datatype = col.DataType.SqlDataType;
-                        if (datatype == SqlDataType.NVarChar || datatype == SqlDataType.NChar)
+                        if (datatype == SqlDataType.NVarChar || datatype == SqlDataType.NChar || datatype == SqlDataType.VarBinary)
                             sb.Append(" (").Append(col.DataType.MaximumLength.ToString()).Append(") ");
                         else if (datatype == SqlDataType.Numeric)
                             sb.Append(" (").Append(col.DataType.NumericPrecision).Append(",").Append(col.DataType.NumericScale).Append(")");

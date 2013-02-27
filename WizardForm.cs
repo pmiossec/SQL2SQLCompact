@@ -49,7 +49,7 @@ namespace GLT.SqlCopy
             _currentStep = overviewCtrl1;
 
             CheckSQLMobileAssemblyPaths();
-            if (!SqlMobileVer31Good && !SqlMobileVer35Good)
+            if (!SqlMobileVer31Good)
             {
                 //in this case we do not have a good path to the Compact Edition drivers
                 Dialogs.SelectMobileAssembliesDialog dialog = new GLT.SqlCopy.Dialogs.SelectMobileAssembliesDialog();
@@ -58,38 +58,19 @@ namespace GLT.SqlCopy
                     if (dialog.Ver31Valid)
                         GLT.SqlCopy.Properties.Settings.Default.SQLMobile30 = dialog.Ver31Path;
 
-                    if (dialog.Ver35Valid)
-                        GLT.SqlCopy.Properties.Settings.Default.SQLMobile35 = dialog.Ver35Path;
-
                     GLT.SqlCopy.Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Environment.Exit(0);
                 }
             }
 
             //Verify that we have at least one good Compact Edition Driver
             bool validDriver = false;
             CheckSQLMobileAssemblyPaths();
-            if (SqlMobileVer31Good)
-            {
-                outputCtrl1.EnableVer31 = true;
-                validDriver = true;
-            }
-            else
-                outputCtrl1.EnableVer31 = false;
-
-            if (SqlMobileVer35Good)
-            {
-                outputCtrl1.EnableVer35 = true;
-                validDriver = true;
-            }
-            else
-                outputCtrl1.EnableVer35 = false;
-
-            if (!validDriver)
-            {
-                MessageBox.Show(this, "Unable to locate valid SQL Server Compact Edition assemblies.", "Assemblies not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(0);
-                return;
-            }
+            outputCtrl1.EnableVer31 = true;
+            validDriver = true;
 
             UpdateWizard();
         }
@@ -97,34 +78,18 @@ namespace GLT.SqlCopy
         private void CheckSQLMobileAssemblyPaths()
         {
             string path30 = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
-            string path35 = GLT.SqlCopy.Properties.Settings.Default.SQLMobile35;
 
             if (File.Exists(path30))
             {
-                FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path30);
-                if (ver.FileVersion.Substring(0,3) == "3.0")
-                    SqlMobileVer31Good = true;
-                else
-                    SqlMobileVer31Good = false;
+                //FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path30);
+                SqlMobileVer31Good = true;
             }
             else
                 SqlMobileVer31Good = false;
 
-            if (File.Exists(path35))
-            {
-                FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path35);
-                if (ver.FileVersion.Substring(0,3) == "3.5")
-                    SqlMobileVer35Good = true;
-                else
-                    SqlMobileVer35Good = false;
-            }
-            else
-                SqlMobileVer35Good = false;
-
         }
 
         private bool SqlMobileVer31Good = false;
-        private bool SqlMobileVer35Good = false;
 
 
         private Font _SelectStepFont = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -364,12 +329,7 @@ namespace GLT.SqlCopy
 
                 string mobileConnStr = outputCtrl1.OutPutConnectionString;
 
-                string assemblyPath = "";
-                if (outputCtrl1.EnableVer31)
-                    assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
-                else
-                    assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile35;
-
+                string assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
 
                 //Test Assembly version
                 finishCtrl1.SetProgressText("Loading correct version of System.Data.SqlServerCe.dll...");

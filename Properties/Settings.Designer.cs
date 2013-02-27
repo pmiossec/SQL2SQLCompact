@@ -34,17 +34,5 @@ namespace GLT.SqlCopy.Properties {
                 this["SQLMobile30"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SQLMobile35 {
-            get {
-                return ((string)(this["SQLMobile35"]));
-            }
-            set {
-                this["SQLMobile35"] = value;
-            }
-        }
     }
 }

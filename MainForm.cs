@@ -164,27 +164,15 @@ namespace GLT.SqlCopy
         private bool CheckSQLMobileAssemblyPaths()
         {
             string path30 = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
-            string path35 = GLT.SqlCopy.Properties.Settings.Default.SQLMobile35;
 
             bool retVal = true;
             if (File.Exists(path30))
             {
-                FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path30);
-                if (ver.FileVersion != "3.0.5300.0")
-                    retVal = false;
+                //FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path30);
+                retVal = false;
             }
             else
                 retVal = false;
-
-            if (File.Exists(path35))
-            {
-                FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path35);
-                if (ver.FileVersion != "3.5.5386.0")
-                    retVal = false;
-            }
-            else
-                retVal = false;
-
 
             return retVal;
 
@@ -217,11 +205,7 @@ namespace GLT.SqlCopy
                 mobileConnStr = String.Format(mobileConnStr, tbDestPath.Text, tbMobileDestLogin.Text, tbMobileDestPassword.Text, cbEncryptDb.Checked.ToString().ToUpper());
 
                
-                string assemblyPath = "";
-                if(rbVer3.Checked)
-                    assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
-                else
-                    assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile35;
+                string assemblyPath = GLT.SqlCopy.Properties.Settings.Default.SQLMobile30;
 
 
                 //Test Assembly version

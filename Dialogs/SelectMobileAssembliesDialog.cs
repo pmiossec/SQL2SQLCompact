@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -51,80 +52,34 @@ namespace GLT.SqlCopy.Dialogs
         {
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
-                if(Check31version(openFileDialog1.FileName))
-                    tb31Path.Text = openFileDialog1.FileName;
-                else
-                    MessageBox.Show(this, "This does not appear to be the correct version.", "Wrong Version of Assembly!", MessageBoxButtons.OK);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
-            {
-                if (Check35version(openFileDialog1.FileName))
-                    tb35Path.Text = openFileDialog1.FileName;
-                else
-                    MessageBox.Show(this, "This does not appear to be the correct version.", "Wrong Version of Assembly!", MessageBoxButtons.OK);
-            }
-        }
-
-
-        private bool Check31version(string path)
-        { 
-            if(String.IsNullOrEmpty(path))
-                return false;
-
-            FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path);
-            if (ver.FileVersion == "3.0.5300.0")
-            {
-                _Ver31Valid = true;
-                return true;
-            }
-            else
-            {
-                _Ver31Valid = false;
-                return false;
-            }
-        }
-
-        private bool Check35version(string path)
-        {
-            if (String.IsNullOrEmpty(path))
-                return false;
-
-            FileVersionInfo ver = FileVersionInfo.GetVersionInfo(path);
-            if (ver.FileVersion == "3.5.5386.0")
-            {
-                _Ver35Valid = true;
-                return true;
-            }
-            else
-            {
-                _Ver35Valid = false;
-                return false;
+                 tb31Path.Text = openFileDialog1.FileName;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (!Check31version(tb31Path.Text) && !Check35version(tb35Path.Text))
+            if (CheckAssembly(openFileDialog1.FileName))
+                tb31Path.Text = openFileDialog1.FileName;
+            else
             {
-                MessageBox.Show(this, "You must select at least one valid assembly version to continue.", "Wrong Version of Assembly!", MessageBoxButtons.OK);
+                MessageBox.Show(this, "Select an existing file.", "The Assembly doesn't exists!", MessageBoxButtons.OK);
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
+        }
+
+        private bool CheckAssembly(string path)
+        { 
+            if(String.IsNullOrEmpty(path))
+                return false;
+
+            return File.Exists(path);
         }
 
         public string Ver31Path
         {
             get { return tb31Path.Text; }
-        }
-
-        public string Ver35Path
-        {
-            get { return tb35Path.Text; }
         }
 
         private bool _Ver31Valid = false;
@@ -133,10 +88,5 @@ namespace GLT.SqlCopy.Dialogs
             get { return _Ver31Valid; }
         }
 
-        private bool _Ver35Valid = false;
-        public bool Ver35Valid
-        {
-            get { return _Ver35Valid; }
-        }
     }
 }

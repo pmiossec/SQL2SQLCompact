@@ -41,6 +41,7 @@ namespace GLT.SqlCopy.Dialogs
         public SelectMobileAssembliesDialog()
         {
             InitializeComponent();
+            tb31Path.Text = @"C:\Program Files (x86)\Microsoft SQL Server Compact Edition\v4.0\Private\System.Data.SqlServerCe.dll";
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -50,6 +51,8 @@ namespace GLT.SqlCopy.Dialogs
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(tb31Path.Text))
+                openFileDialog1.InitialDirectory = tb31Path.Text;
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                  tb31Path.Text = openFileDialog1.FileName;

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLT.SqlCopy", "GLT.SqlCopy.csproj", "{0CF1444A-1EDD-4F17-94EA-68AFCCA35417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLT.Common", "..\GLT.Common\GLT.Common.csproj", "{E58FBCA6-FCE3-4A67-879C-446D0FD12CE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLT.Licensing", "..\GLT.License\GLT.Licensing.csproj", "{522DBA8A-F71C-464B-92FC-4ABB7B488615}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CF1444A-1EDD-4F17-94EA-68AFCCA35417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF1444A-1EDD-4F17-94EA-68AFCCA35417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF1444A-1EDD-4F17-94EA-68AFCCA35417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF1444A-1EDD-4F17-94EA-68AFCCA35417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E58FBCA6-FCE3-4A67-879C-446D0FD12CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E58FBCA6-FCE3-4A67-879C-446D0FD12CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E58FBCA6-FCE3-4A67-879C-446D0FD12CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E58FBCA6-FCE3-4A67-879C-446D0FD12CE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522DBA8A-F71C-464B-92FC-4ABB7B488615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522DBA8A-F71C-464B-92FC-4ABB7B488615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522DBA8A-F71C-464B-92FC-4ABB7B488615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522DBA8A-F71C-464B-92FC-4ABB7B488615}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

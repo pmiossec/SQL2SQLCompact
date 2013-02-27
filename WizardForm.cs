@@ -397,6 +397,11 @@ namespace GLT.SqlCopy
                         int max = 0;
                         switch (col.DataType.SqlDataType)
                         {
+                            case SqlDataType.NVarCharMax:
+                                //max = col.DataType.MaximumLength;
+                                col.DataType = new DataType(SqlDataType.NVarChar);
+                                col.DataType.MaximumLength = 4000;
+                                break;
                             case SqlDataType.VarChar:
                                 max = col.DataType.MaximumLength;
                                 col.DataType = new DataType(SqlDataType.NVarChar);
